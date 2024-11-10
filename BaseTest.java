@@ -42,7 +42,7 @@ class BaseTest {
     }
     @Test
     @DisplayName("Название блока")
-    void checkPayFormName() {
+    void checkName() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement h2Element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='pay__wrapper']/h2")));
         Assertions.assertEquals(h2Element.getText(), "Онлайн пополнение\nбез комиссии", "Ошибка в наименовании блока");
@@ -50,7 +50,7 @@ class BaseTest {
 
     @Test
     @DisplayName("Наличие логотипов платёжных систем")
-    void checkPresencePaymentLogo() {
+    void checkLogo() {
         List<WebElement> logos = driver.findElements(By.xpath("//img[contains(@src, '/local/templates/new_design/assets/html/images/pages/index/pay/')]"));
         Assertions.assertEquals(5, logos.size(), "Ошибка: Логотипы не найдены");
         for (WebElement logo : logos) {
@@ -59,7 +59,7 @@ class BaseTest {
     }
     @Test
     @DisplayName("Ссылка «Подробнее о сервисе»")
-    void clickMoreInfoLink() {
+    void clickLink() {
         WebElement moreInfoLink = driver.findElement(By.linkText("Подробнее о сервисе"));
         moreInfoLink.click();
         Assertions.assertEquals("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/", driver.getCurrentUrl(), "Ссылка «Подробнее о сервисе» не активна");
@@ -67,7 +67,7 @@ class BaseTest {
 
     @Test
     @DisplayName("Работа формы по кнопке «Продолжить»")
-    void testFormSubmission() {
+    void testForm() {
         WebElement phoneNumber = driver.findElement(By.id("connection-phone"));
         phoneNumber.click();
         phoneNumber.sendKeys("297777777");
